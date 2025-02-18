@@ -34,6 +34,13 @@
   --btn-primary-bg-hover: var(--primary-600);
   --btn-primary-bg-hover: var(--primary-600);
   --btn-primary-text: var(--white);
+
+  /* Icon Button */
+  --icon-btn-primary-bg: var(--white);
+  --icon-btn-primary-icon: var(--primary-500);
+  --icon-btn-primary-border: var(--primary-500);
+  --icon-btn-primary-bg-hover: var(--primary-500);
+  --icon-btn-primary-icon-hover: var(--white);
 }
 
 body {
