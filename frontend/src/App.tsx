@@ -1,10 +1,11 @@
 import './App.css'
+import shortlyLogo from './assets/shortly-logo.svg'
 
 function App() {
 
   return (
     <>
-      <h1>Hola mundo</h1>
+      <img src={shortlyLogo} alt="" />
     </>
   )
 }
