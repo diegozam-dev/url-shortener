@@ -29,6 +29,17 @@
   --primary-900: rgba(36, 56, 86, 1);
   --primary-950: rgba(24, 36, 57, 1);
 
+  /* Text */
+  --text-primary: var(--gray-800);
+
+  /* Heading */
+  --heading-primary: var(--black);
+  --heading-contrast: var(--white);
+
+  /* Surface */
+  --surface-primary: var(--white);
+  --surface-brand: var(--primary-800);
+
   /* Primary Button */
   --btn-primary-bg: var(--primary-500);
   --btn-primary-bg-hover: var(--primary-600);
@@ -45,8 +56,27 @@
   /* ShortUrl */
   --short-url-text: var(--primary-500);
   --short-url-text-hover: var(--primary-600);
+
+  /* Input */
+  --input-text: var(--black);
+  --input-placeholder: var(--gray-400);
+  --input-border: var(--gray-200);
+  --input-border-focus: var(--primary-500);
 }
 
 body {
-  font-family: 'Open Sans', sans-serif !important;  
+  font-family: 'Open Sans', sans-serif !important;
+  background-color: var(--white);
+}
+
+h1, h2 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 56px;
+}
+
+h2 {
+  font-size: 40px;
 }
