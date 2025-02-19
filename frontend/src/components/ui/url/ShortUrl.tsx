@@ -1,8 +1,6 @@
-type ShortUrlProps = {
-  url: string;
-};
+import { UrlProps } from '../../../types';
 
-const ShortUrl = ({ url }: ShortUrlProps) => {
+const ShortUrl = ({ url }: UrlProps) => {
   return (
     <a
       href={url}
