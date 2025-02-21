@@ -1,9 +1,9 @@
-import { ReactNode } from 'react';
+import { MouseEvent, ReactNode } from 'react';
 import ButtonState from '../../../utils/buttonState';
 import { ButtonStyles } from '../../../types';
 
 type PrimaryButtonProps = {
-  action: () => void;
+  action: (e: MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode;
   state?: ButtonState;
 };
