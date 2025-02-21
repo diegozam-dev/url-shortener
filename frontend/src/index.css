@@ -29,8 +29,12 @@
   --primary-900: rgba(36, 56, 86, 1);
   --primary-950: rgba(24, 36, 57, 1);
 
+  /* Accent */
+  --accent-red: rgba(192, 21, 21,1);
+
   /* Text */
   --text-primary: var(--gray-800);
+  --text-error: var(--accent-red);
 
   /* Heading */
   --heading-primary: var(--black);
@@ -39,6 +43,9 @@
   /* Surface */
   --surface-primary: var(--white);
   --surface-brand: var(--primary-800);
+
+  /* Border */
+  --border-primary: var(--primary-500);
 
   /* Primary Button */
   --btn-primary-bg: var(--primary-500);
@@ -62,6 +69,9 @@
   --input-placeholder: var(--gray-400);
   --input-border: var(--gray-200);
   --input-border-focus: var(--primary-500);
+  --input-border-invalid: var(--accent-red);
+  --input-shadow-focus: 0px 0px 4px 2px rgba(67, 117, 179, 0.50);
+  --input-shadow-invalid: 0px 0px 4px 2px rgba(192, 21, 21, 0.50);
 }
 
 body {
