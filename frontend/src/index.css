@@ -72,6 +72,9 @@
   --input-border-invalid: var(--accent-red);
   --input-shadow-focus: 0px 0px 4px 2px rgba(67, 117, 179, 0.50);
   --input-shadow-invalid: 0px 0px 4px 2px rgba(192, 21, 21, 0.50);
+
+  /* Spinner */
+  --spinner-border: var(--white);
 }
 
 body {
