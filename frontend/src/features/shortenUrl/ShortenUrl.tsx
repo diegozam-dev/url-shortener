@@ -2,17 +2,19 @@ import { ChangeEvent, MouseEvent, useState } from 'react';
 import IconButton from '../../components/ui/button/IconButton';
 import PrimaryButton from '../../components/ui/button/PrimaryButton';
 import ShortUrl from '../../components/ui/url/ShortUrl';
+import urlRegex from '../../utils/urlRegex';
+import { ButtonState } from '../../utils/buttonConfig';
+import Spinner from '../../components/ui/spinner/Spinner';
+import copyTextToClipboard from '../../utils/copyTextToClipboard';
 
 const ShortenUrl = () => {
   const [isUrlValid, setIsUrlValid] = useState(false);
   const [urlInput, setUrlInput] = useState('');
-  const [shortenUrl, setShortenUrl] = useState<string | null>(null);
+  const [shortUrl, setShortUrl] = useState<string | null>(null);
+  const [shorteningUrl, setShorteningUrl] = useState(false);
 
-  const handleUrlValidation = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
-    const urlRegex = new RegExp(
-      '^(https?:\\/\\/)?([\\w.-]+)\\.([a-zA-Z]{2,})(:\\d+)?(\\/.*)?$'
-    );
 
     setUrlInput(inputValue);
 
@@ -24,23 +26,27 @@ const ShortenUrl = () => {
     e.preventDefault();
 
     if (isUrlValid) {
-      alert('Url shortening');
-      setShortenUrl('http://shortly/3rff3');
-    } else alert('Invalid url');
-  };
+      setShorteningUrl(true);
 
-  const handleCopyUrl = (url: string) => {
-    navigator.clipboard.writeText(url);
-    alert('Url copied');
+      setTimeout(() => {
+        setShortUrl('http://shortly/3rff3');
+        setShorteningUrl(false);
+        setUrlInput('');
+        setIsUrlValid(false);
+      }, 5000); // Aquí irá la llamada a la api
+    } else {
+      alert('Invalid url');
+    }
   };
 
   return (
     <div>
-      <form className="w-full flex gap-3">
+      <form className="w-full flex flex-col gap-3 sm:flex-row">
         <div className="w-full">
           <input
-            onChange={handleUrlValidation}
+            onChange={handleInputChange}
             type="email"
+            value={urlInput}
             placeholder="Enter url"
             className={`text-lg text-(--input-text) mb-1 px-4 h-12 w-full bg-(--surface-primary) rounded-lg placeholder:text-(--input-placeholder) outline-0 ${
               urlInput.length > 0 && !isUrlValid
@@ -54,12 +60,17 @@ const ShortenUrl = () => {
             </span>
           )}
         </div>
-        <PrimaryButton action={handleShortenUrl}>Shorten</PrimaryButton>
+        <PrimaryButton
+          action={handleShortenUrl}
+          state={shorteningUrl ? ButtonState.Loading : ButtonState.Default}
+        >
+          {shorteningUrl ? <Spinner /> : 'Shorten'}
+        </PrimaryButton>
       </form>
-      {shortenUrl && (
+      {shortUrl && (
         <div className="mt-6 p-6 w-full border-2 border-dashed border-(--border-primary) rounded-lg flex justify-center items-center gap-3">
-          <ShortUrl url={shortenUrl} />
-          <IconButton action={() => handleCopyUrl(shortenUrl)}>
+          <ShortUrl url={shortUrl} />
+          <IconButton action={() => copyTextToClipboard(shortUrl)}>
             <svg
               width="20"
               height="20"
