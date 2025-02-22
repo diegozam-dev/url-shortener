@@ -1,5 +1,5 @@
 import { MouseEvent, ReactNode } from 'react';
-import ButtonState from '../../../utils/buttonState';
+import { ButtonState } from '../../../utils/buttonConfig';
 import { ButtonStyles } from '../../../types';
 
 type PrimaryButtonProps = {
@@ -23,7 +23,7 @@ const PrimaryButton = ({
     <button
       onClick={action}
       disabled={state === ButtonState.Loading}
-      className={`${buttonStyles[state]} text-lg font-semibold px-6 h-12 rounded-lg flex items-center transition-all`}
+      className={`${buttonStyles[state]} text-lg font-semibold px-6 min-w-36 h-12 rounded-lg flex justify-center items-center transition-all`}
     >
       {children}
     </button>
