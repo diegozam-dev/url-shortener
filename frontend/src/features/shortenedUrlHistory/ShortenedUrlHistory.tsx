@@ -31,7 +31,7 @@ const copyIcon = (
 const ShortenedUrlHistory = () => {
   return (
     <>
-      <h2 className="text-(--heading-contrast) mb-6">History</h2>
+      <h2 className="text-(--heading-contrast) text-center mb-6">History</h2>
       <div className="p-6 bg-(--surface-primary) rounded-lg shadow-(--shadow-md)">
         {/* <span className="text-base text-(--text-primary)">
           You have not shortened any url yet
