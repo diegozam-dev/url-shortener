@@ -1,8 +1,10 @@
+import { useContext } from 'react';
 import IconButton from '../../components/ui/button/IconButton';
 import Separator from '../../components/ui/separator/Separator';
 import OriginalUrl from '../../components/ui/url/OriginalUrl';
 import ShortUrl from '../../components/ui/url/ShortUrl';
 import copyTextToClipboard from '../../utils/copyTextToClipboard';
+import { UrlHistoryContext } from '../../contexts/contexts';
 
 const copyIcon = (
   <svg
@@ -29,34 +31,36 @@ const copyIcon = (
 );
 
 const ShortenedUrlHistory = () => {
+  const historyContext = useContext(UrlHistoryContext);
+
   return (
     <>
       <h2 className="text-(--heading-contrast) text-center mb-6">History</h2>
-      <div className="p-6 bg-(--surface-primary) rounded-lg shadow-(--shadow-md)">
-        {/* <span className="text-base text-(--text-primary)">
-          You have not shortened any url yet
-        </span> */}
-        <ul>
-          <li className="text-clip py-4 grid grid-cols-1 items-center gap-3 md:max-[850px]:grid-cols-[1fr_40%_40px] md:min-[850px]:grid-cols-[1fr_30%_40px] md:gap-2">
-            <OriginalUrl url="https://www.youtube.com/watch?v=OTXmC3VVOic&t=12668s" />
-            <ShortUrl url="https://shortly.com/v5hnU" />
-            <IconButton
-              action={() => copyTextToClipboard('https://shortly.com/v5hnU')}
-            >
-              {copyIcon}
-            </IconButton>
-          </li>
-          <Separator />
-          <li className="text-clip py-4 grid grid-cols-1 items-center gap-3 md:max-[850px]:grid-cols-[1fr_40%_40px] md:min-[850px]:grid-cols-[1fr_30%_40px] md:gap-2">
-            <OriginalUrl url="https://www.youtube.com/watch?v=OTXmC3VVOic&t=12668s" />
-            <ShortUrl url="https://shortly.com/v5hnU" />
-            <IconButton
-              action={() => copyTextToClipboard('https://shortly.com/v5hnU')}
-            >
-              {copyIcon}
-            </IconButton>
-          </li>
-        </ul>
+      <div className="p-6 min-h-36 bg-(--surface-primary) rounded-lg shadow-(--shadow-md)">
+        {historyContext && historyContext?.urlHistory.length > 0 ? (
+          <ul>
+            {historyContext?.urlHistory?.map((shortenedUrl, index) => {
+              return (
+                <div key={index}>
+                  <li className="py-4 grid grid-cols-1 items-center gap-3 md:max-[850px]:grid-cols-[1fr_40%_40px] md:min-[850px]:grid-cols-[1fr_30%_40px] md:gap-2">
+                    <OriginalUrl url={shortenedUrl.originalUrl} />
+                    <ShortUrl url={shortenedUrl.shortUrl} />
+                    <IconButton
+                      action={() => copyTextToClipboard(shortenedUrl.shortUrl)}
+                    >
+                      {copyIcon}
+                    </IconButton>
+                  </li>
+                  <Separator />
+                </div>
+              );
+            })}
+          </ul>
+        ) : (
+          <span className="text-base text-(--text-primary)">
+            You have not shortened any url yet
+          </span>
+        )}
       </div>
     </>
   );
