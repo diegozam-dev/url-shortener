@@ -1,14 +1,6 @@
-import { MouseEvent, ReactNode } from 'react';
-import { ButtonState } from '../../../utils/buttonConfig';
-import { ButtonStyles } from '../../../types';
+import { ButtonState, PrimaryButtonProps } from '../../../types/component';
 
-type PrimaryButtonProps = {
-  action: (e: MouseEvent<HTMLButtonElement>) => void;
-  children: ReactNode;
-  state?: ButtonState;
-};
-
-const buttonStyles: ButtonStyles = {
+const buttonStyles = {
   DEFAULT:
     'text-(--btn-primary-text) bg-(--btn-primary-bg) hover:bg-(--btn-primary-bg-hover) cursor-pointer',
   LOADING: 'text-(--btn-primary-text) bg-(--btn-primary-bg-hover) cursor-auto'
