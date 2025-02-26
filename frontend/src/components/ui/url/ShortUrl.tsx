@@ -1,4 +1,4 @@
-import { UrlProps } from '../../../types';
+import { UrlProps } from '../../../types/component';
 
 const ShortUrl = ({ url }: UrlProps) => {
   return (
