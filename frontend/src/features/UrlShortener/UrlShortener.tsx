@@ -6,15 +6,16 @@ import urlRegex from '../../utils/urlRegex';
 import { ButtonState } from '../../types/component';
 import Spinner from '../../components/ui/spinner/Spinner';
 import copyTextToClipboard from '../../utils/copyTextToClipboard';
-import { createShortUrl } from '../../services/shortenUrlService';
+import { createShortUrl } from '../../services/urlShortenerService';
 import { addToUrlHistory, getUrlHistory } from '../../utils/localStorage';
-import { ShortUrlResponse } from '../../types/api';
+import { UrlShortenerResponse } from '../../types/api';
 import {
   UrlShortenerState,
   UrlShortenerReducerAction,
   UrlShortenerReducerActionTypes
 } from '../../types/features';
 import { UrlHistoryContext } from '../../contexts/contexts';
+import { ShortenedUrl } from '../../types/url';
 
 const initialState: UrlShortenerState = {
   urlInput: '',
@@ -38,6 +39,9 @@ const reducer = (
   }
   if (action.type === 'SET_IS_SHORTENING') {
     return { ...state, isShortening: action.payload as boolean };
+  }
+  if (action.type === 'RESET') {
+    return { ...state, isShortening: false, urlInput: '', isUrlValid: false };
   }
 
   throw new Error('Unknown action: ' + action.type);
@@ -79,36 +83,26 @@ const UrlShortener = () => {
       });
 
       // Creamos una url corta
-      const response: ShortUrlResponse = await createShortUrl(state.urlInput);
+      const response: UrlShortenerResponse = await createShortUrl(
+        state.urlInput
+      );
 
       // Actualizamos la actual url corta y actualizamos el historial
       dispatch({
         type: UrlShortenerReducerActionTypes.SetCurrentShortUrl,
-        payload: response.data.shortUrl
+        payload: response.data?.shortUrl || null
       });
-      addToUrlHistory(response.data);
+      addToUrlHistory(response.data as ShortenedUrl);
       historyContext?.setUrlHistory(getUrlHistory());
 
       // Reiniciamos el estado
-      handleStateReset();
+      dispatch({
+        type: UrlShortenerReducerActionTypes.Reset,
+        payload: null
+      });
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleStateReset = () => {
-    dispatch({
-      type: UrlShortenerReducerActionTypes.SetUrlImput,
-      payload: ''
-    });
-    dispatch({
-      type: UrlShortenerReducerActionTypes.SetIsUrlValid,
-      payload: false
-    });
-    dispatch({
-      type: UrlShortenerReducerActionTypes.SetIsShortening,
-      payload: false
-    });
   };
 
   return (

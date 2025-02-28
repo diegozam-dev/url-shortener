@@ -10,7 +10,8 @@ export enum UrlShortenerReducerActionTypes {
   SetUrlImput = 'SET_URL_INPUT',
   SetIsUrlValid = 'SET_IS_URL_VALID',
   SetCurrentShortUrl = 'SET_CURRENT_SHORT_URL',
-  SetIsShortening = 'SET_IS_SHORTENING'
+  SetIsShortening = 'SET_IS_SHORTENING',
+  Reset = 'RESET'
 }
 
 export type UrlShortenerReducerAction = {
