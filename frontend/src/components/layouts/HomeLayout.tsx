@@ -26,7 +26,7 @@ const HomeLayout = () => {
           />
           <section
             id="shorten-url"
-            className="py-10 h-[500px] z-50 min-[370px]:h-[416px]"
+            className="py-10 h-[532px] z-50 min-[370px]:h-[456px]"
           >
             <UrlShortener />
           </section>
@@ -41,7 +41,7 @@ const HomeLayout = () => {
           </div>
           <section
             id="shortened-url-history"
-            className="pt-32 pb-10 z-50 min-[370px]:pt-34 sm:pt-16"
+            className="pt-24 pb-10 z-50 min-[370px]:pt-24 sm:pt-8"
           >
             <ShortenedUrlHistory />
           </section>
