@@ -3,9 +3,9 @@ import axios, { AxiosResponse } from 'axios';
 export const createShortUrl = async (url: string) => {
   try {
     const { data }: AxiosResponse = await axios.post(
-      'http://localhost:3000/v1/api/url/encode',
+      import.meta.env.VITE_ENCODE_URL_API,
       {
-        url: url
+        url
       },
       {
         headers: {
