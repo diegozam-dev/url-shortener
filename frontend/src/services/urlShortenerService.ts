@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { handleErrors } from './handleErrors';
 import CustomError from '../models/CustomError';
 import { ErrorCode } from '../types/index';
@@ -18,9 +18,12 @@ export const createShortUrl = async (url: string) => {
     );
 
     return data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      handleErrors(new CustomError(error.code as ErrorCode));
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      const errorCode = error.response?.data?.response as ErrorCode;
+      handleErrors(new CustomError(errorCode || ErrorCode.UnknownError));
+    } else {
+      handleErrors(new CustomError(ErrorCode.UnknownError));
     }
   }
 };
