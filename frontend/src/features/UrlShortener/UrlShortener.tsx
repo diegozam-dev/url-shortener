@@ -113,6 +113,8 @@ const UrlShortener = () => {
         type: UrlShortenerReducerActionTypes.Reset,
         payload: null
       });
+
+      toast.success('Url shortened successfully.');
     } catch (error) {
       handleErrors(error as CustomError);
 
