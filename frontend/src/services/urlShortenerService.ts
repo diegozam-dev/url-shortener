@@ -1,4 +1,7 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import { handleErrors } from './handleErrors';
+import CustomError from '../models/CustomError';
+import { ErrorCode } from '../types/error';
 
 export const createShortUrl = async (url: string) => {
   try {
@@ -16,6 +19,8 @@ export const createShortUrl = async (url: string) => {
 
     return data;
   } catch (error) {
-    console.log(error);
+    if (error instanceof AxiosError) {
+      handleErrors(new CustomError(error.code as ErrorCode));
+    }
   }
 };
