@@ -16,6 +16,10 @@ import {
 } from '../../types/features';
 import { UrlHistoryContext } from '../../contexts/contexts';
 import { ShortenedUrl } from '../../types/url';
+import CustomError from '../../models/CustomError';
+import { ErrorCode } from '../../types/error';
+import { handleErrors } from '../../services/handleErrors';
+import { toast } from 'sonner';
 
 const initialState: UrlShortenerState = {
   urlInput: '',
@@ -44,7 +48,7 @@ const reducer = (
     return { ...state, isShortening: false, urlInput: '', isUrlValid: false };
   }
 
-  throw new Error('Unknown action: ' + action.type);
+  throw new CustomError(ErrorCode.UnknownError);
 };
 
 const UrlShortener = () => {
@@ -54,24 +58,28 @@ const UrlShortener = () => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
 
-    dispatch({
-      type: UrlShortenerReducerActionTypes.SetUrlImput,
-      payload: inputValue
-    });
-
-    const validationResult = urlRegex.test(inputValue);
-    if (state.isUrlValid !== validationResult)
+    try {
       dispatch({
-        type: UrlShortenerReducerActionTypes.SetIsUrlValid,
-        payload: validationResult
+        type: UrlShortenerReducerActionTypes.SetUrlImput,
+        payload: inputValue
       });
+
+      const validationResult = urlRegex.test(inputValue);
+      if (state.isUrlValid !== validationResult)
+        dispatch({
+          type: UrlShortenerReducerActionTypes.SetIsUrlValid,
+          payload: validationResult
+        });
+    } catch (error) {
+      handleErrors(error as CustomError);
+    }
   };
 
   const handleShortenUrl = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     if (!state.isUrlValid) {
-      alert('Invalid Url.');
+      toast.error('The url is invalid, check the url and try again.');
       return;
     }
 
@@ -101,7 +109,13 @@ const UrlShortener = () => {
         payload: null
       });
     } catch (error) {
-      console.log(error);
+      handleErrors(error as CustomError);
+
+      // Reiniciamos el estado
+      dispatch({
+        type: UrlShortenerReducerActionTypes.SetIsShortening,
+        payload: false
+      });
     }
   };
 
