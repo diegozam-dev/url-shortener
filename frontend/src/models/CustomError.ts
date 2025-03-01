@@ -1,17 +1,13 @@
 import { ErrorCode } from '../types/index';
 
 class CustomError extends Error {
-  private readonly _code: ErrorCode;
+  readonly code: ErrorCode;
 
   constructor(code: ErrorCode, message?: string) {
     super(message);
-    this._code = code;
+    this.code = code;
 
     Object.setPrototypeOf(this, CustomError.prototype);
-  }
-
-  get code(): string {
-    return this._code;
   }
 }
 
