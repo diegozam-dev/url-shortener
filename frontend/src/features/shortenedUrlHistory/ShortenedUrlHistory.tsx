@@ -1,8 +1,10 @@
 import { useContext } from 'react';
-import IconButton from '../../components/ui/button/IconButton';
-import Separator from '../../components/ui/separator/Separator';
-import OriginalUrl from '../../components/ui/url/OriginalUrl';
-import ShortUrl from '../../components/ui/url/ShortUrl';
+import {
+  IconButton,
+  Separator,
+  OriginalUrl,
+  ShortUrl
+} from '../../components/index';
 import copyTextToClipboard from '../../utils/copyTextToClipboard';
 import { UrlHistoryContext } from '../../contexts/contexts';
 

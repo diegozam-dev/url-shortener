@@ -5,11 +5,11 @@ import ShortenedUrlHistory from '../../features/shortenedUrlHistory/ShortenedUrl
 import Footer from './Footer';
 import { UrlHistoryContext } from '../../contexts/contexts';
 import { useEffect, useState } from 'react';
-import { getUrlHistory } from '../../utils/localStorage';
-import { ShortenedUrl } from '../../types/url';
+import { ShortenedUrlType } from '../../types/index';
+import { getUrlHistory } from '../../utils/index';
 
 const HomeLayout = () => {
-  const [urlHistory, setUrlHistory] = useState<ShortenedUrl[]>([]);
+  const [urlHistory, setUrlHistory] = useState<ShortenedUrlType[]>([]);
 
   useEffect(() => {
     setUrlHistory(getUrlHistory());

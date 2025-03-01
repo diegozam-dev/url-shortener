@@ -1,4 +1,4 @@
-import { UrlProps } from '../../../types/component';
+import { UrlProps } from '../../../types/index';
 
 const OriginalUrl = ({ url }: UrlProps) => {
   return (

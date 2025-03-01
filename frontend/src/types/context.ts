@@ -1,6 +1,6 @@
-import { ShortenedUrl } from './url';
+import { ShortenedUrlType } from './url';
 
 export type UrlHistoryContextType = {
-  urlHistory: ShortenedUrl[];
-  setUrlHistory: React.Dispatch<React.SetStateAction<ShortenedUrl[]>>;
+  urlHistory: ShortenedUrlType[];
+  setUrlHistory: React.Dispatch<React.SetStateAction<ShortenedUrlType[]>>;
 };

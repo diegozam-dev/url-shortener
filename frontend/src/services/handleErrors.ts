@@ -1,6 +1,6 @@
 import { toast } from 'sonner';
 import CustomError from '../models/CustomError';
-import { ErrorCode } from '../types/error';
+import { ErrorCode } from '../types/index';
 
 export const handleErrors = (err: CustomError) => {
   let errorMessage: string;

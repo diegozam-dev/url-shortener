@@ -1,4 +1,4 @@
-import { ButtonState, PrimaryButtonProps } from '../../../types/component';
+import { ButtonState, PrimaryButtonProps } from '../../../types/index';
 
 const buttonStyles = {
   DEFAULT:

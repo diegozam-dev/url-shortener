@@ -1,4 +1,4 @@
-import { ErrorCode } from '../types/error';
+import { ErrorCode } from '../types/index';
 
 class CustomError extends Error {
   private readonly _code: ErrorCode;

@@ -1,12 +1,12 @@
-import { ShortenedUrl } from '../types/url';
+import { ShortenedUrlType } from '../types/index';
 
-export const getUrlHistory = (): ShortenedUrl[] => {
+export const getUrlHistory = (): ShortenedUrlType[] => {
   const urlHistory = localStorage.getItem('shortened_urls_history');
 
   return urlHistory ? JSON.parse(urlHistory) : [];
 };
 
-export const addToUrlHistory = (shortenedUrl: ShortenedUrl) => {
+export const addToUrlHistory = (shortenedUrl: ShortenedUrlType) => {
   const urlHistory = getUrlHistory();
 
   const shortUrlAlreadyExist = urlHistory.find(

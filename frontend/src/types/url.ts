@@ -1,4 +1,4 @@
-export type ShortenedUrl = {
+export type ShortenedUrlType = {
   shortUrl: string;
   originalUrl: string;
 };

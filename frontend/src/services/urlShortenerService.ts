@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { handleErrors } from './handleErrors';
 import CustomError from '../models/CustomError';
-import { ErrorCode } from '../types/error';
+import { ErrorCode } from '../types/index';
 
 export const createShortUrl = async (url: string) => {
   try {

@@ -1,23 +1,28 @@
 import { ChangeEvent, MouseEvent, useContext, useReducer } from 'react';
-import IconButton from '../../components/ui/button/IconButton';
-import PrimaryButton from '../../components/ui/button/PrimaryButton';
-import ShortUrl from '../../components/ui/url/ShortUrl';
-import urlRegex from '../../utils/urlRegex';
-import { ButtonState } from '../../types/component';
-import Spinner from '../../components/ui/spinner/Spinner';
-import copyTextToClipboard from '../../utils/copyTextToClipboard';
-import { createShortUrl } from '../../services/urlShortenerService';
-import { addToUrlHistory, getUrlHistory } from '../../utils/localStorage';
-import { UrlShortenerResponse } from '../../types/api';
+import {
+  IconButton,
+  ShortUrl,
+  PrimaryButton,
+  Spinner
+} from '../../components/index';
+import {
+  urlRegex,
+  addToUrlHistory,
+  getUrlHistory,
+  copyTextToClipboard
+} from '../../utils/index';
 import {
   UrlShortenerState,
   UrlShortenerReducerAction,
-  UrlShortenerReducerActionTypes
-} from '../../types/features';
+  UrlShortenerReducerActionTypes,
+  UrlShortenerResponse,
+  ButtonState,
+  ShortenedUrlType,
+  ErrorCode
+} from '../../types/index';
 import { UrlHistoryContext } from '../../contexts/contexts';
-import { ShortenedUrl } from '../../types/url';
 import CustomError from '../../models/CustomError';
-import { ErrorCode } from '../../types/error';
+import { createShortUrl } from '../../services/urlShortenerService';
 import { handleErrors } from '../../services/handleErrors';
 import { toast } from 'sonner';
 
@@ -100,7 +105,7 @@ const UrlShortener = () => {
         type: UrlShortenerReducerActionTypes.SetCurrentShortUrl,
         payload: response.data?.shortUrl || null
       });
-      addToUrlHistory(response.data as ShortenedUrl);
+      addToUrlHistory(response.data as ShortenedUrlType);
       historyContext?.setUrlHistory(getUrlHistory());
 
       // Reiniciamos el estado
