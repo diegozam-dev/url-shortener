@@ -1,17 +1,13 @@
-import ErrorEnum from './errorEnum';
+import ErrorCode from './errorCodes';
 
 class CustomError extends Error {
-  private readonly _code: ErrorEnum;
+  readonly code: ErrorCode;
 
-  constructor(code: ErrorEnum, message: string) {
+  constructor(code: ErrorCode, message: string) {
     super(message);
-    this._code = code;
+    this.code = code;
 
     Object.setPrototypeOf(this, CustomError.prototype);
-  }
-
-  get code(): string {
-    return this._code;
   }
 }
 
