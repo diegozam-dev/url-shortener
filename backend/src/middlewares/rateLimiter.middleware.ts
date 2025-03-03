@@ -1,12 +1,12 @@
 import { rateLimit } from 'express-rate-limit';
-import ErrorEnum from '../errors/errorEnum';
+import ErrorCode from '../errors/errorCodes';
 
 const rateLimiter = rateLimit({
   windowMs: 24 * 60 * 60 * 1000,
   max: 100,
   message: {
-    response: ErrorEnum.TooManyRequests,
-    message: 'You have exceeded your 10 requests per day limit.'
+    response: ErrorCode.TooManyRequests,
+    message: 'You have exceeded your 100 requests per day limit.'
   },
   headers: true
 });

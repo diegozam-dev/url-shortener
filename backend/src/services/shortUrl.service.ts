@@ -6,7 +6,7 @@ import {
   decodeIdWithCheckSum,
   isValidCheckSum
 } from '../utils/index';
-import ErrorEnum from '../errors/errorEnum';
+import ErrorCode from '../errors/errorCodes';
 
 class ShortUrlService {
   private shortUrlModel: ShortUrlModel;
@@ -38,7 +38,7 @@ class ShortUrlService {
   public getOriginalUrl = async (checkSumId: string) => {
     // Valida el checkSum
     if (!isValidCheckSum(checkSumId))
-      throw new CustomError(ErrorEnum.InvalidUrl, 'The url is invalid.');
+      throw new CustomError(ErrorCode.InvalidUrl, 'The url is invalid.');
 
     const id = decodeIdWithCheckSum(checkSumId);
 
@@ -46,7 +46,7 @@ class ShortUrlService {
 
     // Si no hay registros la url no existe
     if (rows.length <= 0)
-      throw new CustomError(ErrorEnum.UrlNotExists, 'The url does not exist.');
+      throw new CustomError(ErrorCode.UrlNotExists, 'The url does not exist.');
 
     return rows[0].original_url;
   };
