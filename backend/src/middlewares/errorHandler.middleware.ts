@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import CustomError from '../errors/customError.error';
-import ErrorEnum from '../errors/errorEnum';
+import ErrorCode from '../errors/errorCodes';
 
 const errorHandler = (
   err: CustomError,
@@ -12,25 +12,29 @@ const errorHandler = (
   let response: string;
   let message: string;
 
-  if (err.code === ErrorEnum.InvalidUrl) {
+  if (err.code === ErrorCode.InvalidUrl) {
     status = 400;
     response = err.code;
     message = err.message;
-  } else if (err.code === ErrorEnum.UrlNotExists) {
+  } else if (err.code === ErrorCode.UrlNotExists) {
     status = 404;
     response = err.code;
     message = err.message;
-  } else if (err.code === 'TooManyRequestsError') {
+  } else if (err.code === ('TooManyRequestsError' as ErrorCode)) {
     status = 429;
-    response = ErrorEnum.TooManyRequests;
+    response = ErrorCode.TooManyRequests;
     message = 'Too many requests.';
-  } else if (err.code === 'AuthenticationRequiredError') {
+  } else if (err.code === ('AuthenticationRequiredError' as ErrorCode)) {
     status = 401;
-    response = ErrorEnum.AuthRequired;
+    response = ErrorCode.AuthRequired;
     message = 'Verify that you have provided your API key.';
+  } else if (err.code === ('WrongCredentialsError' as ErrorCode)) {
+    status = 401;
+    response = ErrorCode.WrongCredentialsError;
+    message = 'The provided API key is incorrect.';
   } else {
     status = 500;
-    response = ErrorEnum.UnknownError;
+    response = ErrorCode.UnknownError;
     message = 'Server error.';
   }
 
