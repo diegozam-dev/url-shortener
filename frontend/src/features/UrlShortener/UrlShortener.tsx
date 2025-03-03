@@ -25,6 +25,7 @@ import CustomError from '../../models/CustomError';
 import { createShortUrl } from '../../services/urlShortenerService';
 import { handleErrors } from '../../services/handleErrors';
 import { toast } from 'sonner';
+import axios from 'axios';
 
 const initialState: UrlShortenerState = {
   urlInput: '',
@@ -116,7 +117,16 @@ const UrlShortener = () => {
 
       toast.success('Url shortened successfully.');
     } catch (error) {
-      handleErrors(error as CustomError);
+      if (axios.isAxiosError(error)) {
+        if (error.response?.data.response) {
+          const errorCode = error.response?.data?.response as ErrorCode;
+          handleErrors(new CustomError(errorCode));
+        } else {
+          handleErrors(new CustomError(error.code as ErrorCode));
+        }
+      } else {
+        handleErrors(new CustomError(ErrorCode.UnknownError));
+      }
 
       // Reiniciamos el estado
       dispatch({
