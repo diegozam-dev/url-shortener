@@ -5,5 +5,7 @@ export enum ErrorCode {
   UrlNotExists = 'ERR_URL_NOT_EXISTS',
   TooManyRequests = 'ERR_TOO_MANY_REQUESTS',
   AuthRequired = 'ERR_AUTH_REQUIRED',
+  WrongCredentialsError = 'ERR_WRONG_CREDENTIALS',
+  ErrorNetwork = 'ERR_NETWORK',
   UnknownError = 'ERR_UNKNOWN_ERROR'
 }
