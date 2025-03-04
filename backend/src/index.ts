@@ -7,9 +7,14 @@ import errorHandler from './middlewares/errorHandler.middleware';
 
 const app = express();
 
+const corsOptions = {
+  origin: 'https://url-shortener-pearl-eta.vercel.app/',
+  methods: 'GET,POST'
+};
+
 // Config
 app.use(json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.disable('x-powered-by');
 
 // Routes
