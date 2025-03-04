@@ -10,7 +10,7 @@ const shortUrlRouter = Router();
 
 const corsOptions = {
   origin: [
-    'https://url-shortener-pearl-eta.vercel.app/',
+    'https://url-shortener-pearl-eta.vercel.app',
     'http://localhost:5173'
   ],
   methods: ['GET', 'POST', 'OPTIONS'],
