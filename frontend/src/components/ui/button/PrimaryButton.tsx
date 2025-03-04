@@ -2,7 +2,7 @@ import { ButtonState, PrimaryButtonProps } from '../../../types/index';
 
 const buttonStyles = {
   DEFAULT:
-    'text-(--btn-primary-text) bg-(--btn-primary-bg) hover:bg-(--btn-primary-bg-hover) cursor-pointer',
+    'text-(--btn-primary-text) bg-(--btn-primary-bg) active:bg-(--btn-primary-bg-hover) md:hover:bg-(--btn-primary-bg-hover) cursor-pointer',
   LOADING: 'text-(--btn-primary-text) bg-(--btn-primary-bg-hover) cursor-auto'
 };
 
