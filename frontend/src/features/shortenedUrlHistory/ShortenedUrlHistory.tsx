@@ -19,8 +19,8 @@ const ShortenedUrlHistory = () => {
           <ul>
             {historyContext?.urlHistory?.map((shortenedUrl, index) => {
               return (
-                <div key={index}>
-                  <li className="py-4 grid grid-cols-1 items-center gap-3 md:max-[850px]:grid-cols-[1fr_40%_40px] md:min-[850px]:grid-cols-[1fr_30%_40px] md:gap-2">
+                <li key={index}>
+                  <div className="py-4 grid grid-cols-1 items-center gap-3 md:max-[850px]:grid-cols-[1fr_40%_40px] md:min-[850px]:grid-cols-[1fr_30%_40px] md:gap-2">
                     <OriginalUrl url={shortenedUrl.originalUrl} />
                     <ShortUrl url={shortenedUrl.shortUrl} />
                     <IconButton
@@ -48,9 +48,9 @@ const ShortenedUrlHistory = () => {
                         </defs>
                       </svg>
                     </IconButton>
-                  </li>
+                  </div>
                   <Separator />
-                </div>
+                </li>
               );
             })}
           </ul>
