@@ -15,7 +15,7 @@ shortUrlRouter.post(
   shortUrlController.createShortUrl
 );
 shortUrlRouter.get(
-  '/redirect/:checkSumId',
+  '/redirect/:shortCode',
   shortUrlController.redirectToOriginalUrl
 );
 

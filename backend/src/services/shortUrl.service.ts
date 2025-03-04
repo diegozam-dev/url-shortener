@@ -1,5 +1,4 @@
 import ShortUrlModel from '../models/shortUrl.model';
-import { BASE_URL } from '../config';
 import CustomError from '../errors/customError.error';
 import {
   encodedIdWithCheckSum,
@@ -20,12 +19,12 @@ class ShortUrlService {
     const result = await this.shortUrlModel.create(url);
 
     if (result.lastInsertRowid) {
-      // Genera la url corta
+      // Si se creó un nuevo registro entonces genera la url corta
       const id = Number(result.lastInsertRowid);
-      const shortUrl = this.getShortUrl(id);
+      const shortCode = this.getShortCode(id);
 
       // Actualiza el registro agregando la url acortada
-      await this.shortUrlModel.updateShortUrl(id, shortUrl);
+      await this.shortUrlModel.updateShortUrl(id, shortCode);
       const { rows } = await this.shortUrlModel.getById(id);
 
       return rows[0];
@@ -35,12 +34,12 @@ class ShortUrlService {
     return result.rows[0];
   };
 
-  public getOriginalUrl = async (checkSumId: string) => {
+  public getOriginalUrl = async (shortCode: string) => {
     // Valida el checkSum
-    if (!isValidCheckSum(checkSumId))
+    if (!isValidCheckSum(shortCode))
       throw new CustomError(ErrorCode.InvalidUrl, 'The url is invalid.');
 
-    const id = decodeIdWithCheckSum(checkSumId);
+    const id = decodeIdWithCheckSum(shortCode);
 
     const { rows } = await this.shortUrlModel.getById(id);
 
@@ -51,10 +50,10 @@ class ShortUrlService {
     return rows[0].original_url;
   };
 
-  private getShortUrl(id: number) {
+  private getShortCode(id: number) {
     const checkSumId = encodedIdWithCheckSum(id);
 
-    return `${BASE_URL}/${checkSumId}`;
+    return checkSumId;
   }
 }
 

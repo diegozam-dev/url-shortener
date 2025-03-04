@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import ShortUrlService from '../services/shortUrl.service';
+import { BASE_URL } from '../config';
 
 class ShortUrlController {
   private shortUrlService: ShortUrlService;
@@ -16,13 +17,16 @@ class ShortUrlController {
     const { url } = req.body;
 
     try {
-      const { short_url, original_url } =
+      const { short_code, original_url } =
         await this.shortUrlService.createShortUrl(url);
 
       res.status(200).json({
         response: 'OK',
         message: 'Url shorted correct.',
-        data: { shortUrl: short_url, originalUrl: original_url }
+        data: {
+          shortUrl: `${BASE_URL}/${short_code}`,
+          originalUrl: original_url
+        }
       });
     } catch (error) {
       next(error);
@@ -34,10 +38,10 @@ class ShortUrlController {
     res: Response,
     next: NextFunction
   ) => {
-    const { checkSumId } = req.params;
+    const { shortCode } = req.params;
 
     try {
-      const originalUrl = await this.shortUrlService.getOriginalUrl(checkSumId);
+      const originalUrl = await this.shortUrlService.getOriginalUrl(shortCode);
 
       res.redirect(301, originalUrl as string);
     } catch (error) {

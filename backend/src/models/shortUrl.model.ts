@@ -30,10 +30,10 @@ class ShortUrlModel {
     return result;
   };
 
-  public updateShortUrl = async (id: number, shortUrl: string) => {
+  public updateShortUrl = async (id: number, shortCode: string) => {
     const result = await db.execute({
-      sql: 'UPDATE short_urls SET short_url = ? WHERE id = ?',
-      args: [shortUrl, id]
+      sql: 'UPDATE short_urls SET short_code = ? WHERE id = ?',
+      args: [shortCode, id]
     });
 
     return result;

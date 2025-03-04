@@ -9,9 +9,9 @@ apiRouter.use('/v1/api/url', shortUrlRouter);
 
 router.use('/', apiRouter);
 // Redirecciona a la api
-router.get('/:checkSumId', (req: Request, res: Response) => {
-  const { checkSumId } = req.params;
-  res.redirect(301, `${BASE_URL}/v1/api/url/redirect/${checkSumId}`);
+router.get('/:shortCode', (req: Request, res: Response) => {
+  const { shortCode } = req.params;
+  res.redirect(301, `${BASE_URL}/v1/api/url/redirect/${shortCode}`);
 });
 
 export default router;
