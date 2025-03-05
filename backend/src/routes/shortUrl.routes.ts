@@ -1,8 +1,9 @@
 import { Router } from 'express';
 import ShortUrlController from '../controllers/shortUrl.controller';
-import scanUrl from '../middlewares/scanUrl.middleware';
-import validateUrl from '../middlewares/validateUrl.middleware';
+import urlScanner from '../middlewares/urlScanner.middleware';
+import urlValidator from '../middlewares/urlValidator.middleware';
 import rateLimiter from '../middlewares/rateLimiter.middleware';
+import cacheHandler from '../middlewares/cacheHandler.middleware';
 
 const shortUrlController = new ShortUrlController();
 const shortUrlRouter = Router();
@@ -10,8 +11,9 @@ const shortUrlRouter = Router();
 shortUrlRouter.post(
   '/encode',
   rateLimiter,
-  validateUrl,
-  scanUrl,
+  urlValidator,
+  urlScanner,
+  cacheHandler,
   shortUrlController.createShortUrl
 );
 shortUrlRouter.get(

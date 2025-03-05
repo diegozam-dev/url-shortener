@@ -1,5 +1,5 @@
 import { rateLimit } from 'express-rate-limit';
-import ErrorCode from '../errors/errorCodes';
+import { ErrorCode } from '../types/error';
 
 const rateLimiter = rateLimit({
   windowMs: 24 * 60 * 60 * 1000,

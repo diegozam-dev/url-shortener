@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import VirusTotalService from '../services/virusTotal.service';
-import ErrorCode from '../errors/errorCodes';
+import { ErrorCode } from '../types/error';
 import axios from 'axios';
 import CustomError from '../errors/customError.error';
 

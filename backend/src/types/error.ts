@@ -1,4 +1,4 @@
-enum ErrorCode {
+export enum ErrorCode {
   MaliciousUrl = 'ERR_MALICIOUS_URL',
   NotFound = 'ERR_NOT_FOUND',
   InvalidUrl = 'ERR_INVALID_URL',
@@ -9,5 +9,3 @@ enum ErrorCode {
   ErrorNetwork = 'ERR_NETWORK',
   UnknownError = 'ERR_UNKNOWN_ERROR'
 }
-
-export default ErrorCode;

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import ErrorCode from '../errors/errorCodes';
+import { ErrorCode } from '../types/error';
 
 const validateUrl = (req: Request, res: Response, next: NextFunction) => {
   const { url } = req.body;

@@ -33,7 +33,6 @@ class VirusTotalService {
     };
 
     const result = await axios(urlReportOptions);
-
     return result.data;
   };
 }

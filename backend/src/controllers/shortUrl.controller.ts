@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { cache } from '../utils';
 import ShortUrlService from '../services/shortUrl.service';
 import { BASE_URL } from '../config';
 
@@ -20,14 +21,19 @@ class ShortUrlController {
       const { short_code, original_url } =
         await this.shortUrlService.createShortUrl(url);
 
-      res.status(200).json({
+      const responseData = {
         response: 'OK',
         message: 'Url shorted correct.',
         data: {
           shortUrl: `${BASE_URL}/${short_code}`,
           originalUrl: original_url
         }
-      });
+      };
+
+      // Guardamos la respuesta en cache
+      cache.set(`shortly:${url}`, responseData);
+
+      res.status(200).json(responseData);
     } catch (error) {
       next(error);
     }

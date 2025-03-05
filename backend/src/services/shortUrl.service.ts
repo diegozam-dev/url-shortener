@@ -5,7 +5,7 @@ import {
   decodeIdWithCheckSum,
   isValidCheckSum
 } from '../utils/index';
-import ErrorCode from '../errors/errorCodes';
+import { ErrorCode } from '../types/error';
 
 class ShortUrlService {
   private shortUrlModel: ShortUrlModel;
@@ -16,12 +16,12 @@ class ShortUrlService {
 
   public createShortUrl = async (url: string) => {
     // Añade una nueva url a la bd
-    const result = await this.shortUrlModel.create(url);
+    const createResult = await this.shortUrlModel.create(url);
 
-    if (result.lastInsertRowid) {
+    if (createResult.lastInsertRowid) {
       // Si se creó un nuevo registro entonces genera la url corta
-      const id = Number(result.lastInsertRowid);
-      const shortCode = this.getShortCode(id);
+      const id = Number(createResult.lastInsertRowid);
+      const shortCode = encodedIdWithCheckSum(id);
 
       // Actualiza el registro agregando la url acortada
       await this.shortUrlModel.updateShortUrl(id, shortCode);
@@ -30,14 +30,14 @@ class ShortUrlService {
       return rows[0];
     }
 
-    // Si no se ha insertado ningún registro devuelve le ya existente
-    return result.rows[0];
+    // Si no se ha insertado ningún registro devuelve la ya existente
+    return createResult.rows[0];
   };
 
   public getOriginalUrl = async (shortCode: string) => {
     // Valida el checkSum
     if (!isValidCheckSum(shortCode))
-      throw new CustomError(ErrorCode.InvalidUrl, 'The url is invalid.');
+      throw new CustomError(ErrorCode.UrlNotExists, 'The url does not exist.');
 
     const id = decodeIdWithCheckSum(shortCode);
 
@@ -49,12 +49,6 @@ class ShortUrlService {
 
     return rows[0].original_url;
   };
-
-  private getShortCode(id: number) {
-    const checkSumId = encodedIdWithCheckSum(id);
-
-    return checkSumId;
-  }
 }
 
 export default ShortUrlService;
