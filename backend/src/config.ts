@@ -6,5 +6,6 @@ export const {
   TURSO_DATABASE_URL,
   TURSO_AUTH_TOKEN,
   API_KEY_URL_SCAN,
-  CHECKSUM_KEY
+  CHECKSUM_KEY,
+  NOT_FOUND_PAGE_URL
 } = process.env;
