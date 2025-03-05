@@ -175,6 +175,7 @@ const UrlShortener = () => {
               action={() =>
                 copyTextToClipboard(state.currentShortUrl as string)
               }
+              title="Copy"
             >
               <svg
                 width="20"

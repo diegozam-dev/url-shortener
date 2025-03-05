@@ -25,6 +25,7 @@ const ShortenedUrlHistory = () => {
                     <ShortUrl url={shortenedUrl.shortUrl} />
                     <IconButton
                       action={() => copyTextToClipboard(shortenedUrl.shortUrl)}
+                      title="Copy"
                     >
                       <svg
                         width="20"
