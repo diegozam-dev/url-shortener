@@ -6,6 +6,7 @@ import Separator from './ui/separator/Separator';
 import Spinner from './ui/spinner/Spinner';
 import OriginalUrl from './ui/url/OriginalUrl';
 import ShortUrl from './ui/url/ShortUrl';
+import NotFound from './layouts/NotFound';
 
 export {
   Footer,
@@ -15,5 +16,6 @@ export {
   Separator,
   Spinner,
   OriginalUrl,
-  ShortUrl
+  ShortUrl,
+  NotFound
 };

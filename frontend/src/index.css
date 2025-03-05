@@ -36,6 +36,7 @@
   --text-primary: var(--gray-800);
   --text-contrast: var(--white);
   --text-error: var(--accent-red);
+  --text-brand: var(--primary-600);
 
   /* Heading */
   --heading-primary: var(--black);

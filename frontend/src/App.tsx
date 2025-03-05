@@ -1,11 +1,16 @@
+import { BrowserRouter, Routes, Route } from 'react-router';
+import { NotFound } from './components/index';
 import HomeLayout from './components/layouts/HomeLayout';
-import { Toaster } from 'sonner';
 
 const App = () => {
   return (
     <>
-      <Toaster position="top-center" richColors closeButton />
-      <HomeLayout></HomeLayout>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomeLayout />} />
+          <Route path="/not-found" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 };

@@ -7,6 +7,7 @@ import { UrlHistoryContext } from '../../contexts/contexts';
 import { useEffect, useState } from 'react';
 import { ShortenedUrlType } from '../../types/index';
 import { getUrlHistory } from '../../utils/index';
+import { Toaster } from 'sonner';
 
 const HomeLayout = () => {
   const [urlHistory, setUrlHistory] = useState<ShortenedUrlType[]>([]);
@@ -17,13 +18,13 @@ const HomeLayout = () => {
 
   return (
     <UrlHistoryContext.Provider value={{ urlHistory, setUrlHistory }}>
+      <Toaster position="top-center" richColors closeButton />
+
       <div>
         <main className="mx-auto px-6 max-w-[1032px] overflow-visible">
-          <img
-            src={shortlyLogo}
-            alt="Shortly logo"
-            className="py-10 mx-auto w-40 z-50"
-          />
+          <a href="/" className="my-10 mx-auto w-fit flex z-50">
+            <img src={shortlyLogo} alt="Shortly logo" className="w-40" />
+          </a>
           <section
             id="shorten-url"
             className="py-10 h-[532px] z-50 min-[370px]:h-[456px]"
