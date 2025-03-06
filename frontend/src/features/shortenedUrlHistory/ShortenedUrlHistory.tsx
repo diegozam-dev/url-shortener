@@ -14,7 +14,7 @@ const ShortenedUrlHistory = () => {
   return (
     <>
       <h2 className="text-(--heading-contrast) text-center mb-6">History</h2>
-      <div className="p-6 min-h-36 max-h-9-[500pxs] bg-(--surface-primary) rounded-lg shadow-(--shadow-md) overflow-y-auto">
+      <div className="p-6 min-h-36 max-h-[400px] bg-(--surface-primary) rounded-lg shadow-(--shadow-md) overflow-y-auto scrollbar">
         {historyContext && historyContext?.urlHistory.length > 0 ? (
           <ul>
             {historyContext?.urlHistory?.map((shortenedUrl, index) => {
@@ -64,5 +64,7 @@ const ShortenedUrlHistory = () => {
     </>
   );
 };
+
+// Editar barras de scroll y rounded del contenedor del history
 
 export default ShortenedUrlHistory;
