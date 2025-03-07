@@ -48,7 +48,7 @@ El backend expone los siguientes endpoints para la gestión de URLs cortas:
 #### Parámetros de ruta:
 * **shortCode (string):** Código de la URL corta.
 #### Ejemplo de solicitud:
-```json
+```sh
 GET /abc123
 ```
 #### Respuesta exitosa (301 Moved Permanently):
@@ -64,7 +64,7 @@ GET /abc123
 #### Parámetros de ruta:
 * **shortCode (string):** Código de la URL corta.
 #### Ejemplo de solicitud:
-```json
+```sh
 GET v1/api/url/redirect/abc123
 ```
 #### Respuesta exitosa (301 Moved Permanently):
