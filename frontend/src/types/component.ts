@@ -6,15 +6,16 @@ export enum ButtonState {
   Loading = 'LOADING'
 }
 
-export type PrimaryButtonProps = {
+type ButtonProps = {
   action: (e: MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode;
+};
+
+export type PrimaryButtonProps = ButtonProps & {
   state?: ButtonState;
 };
 
-export type IconButtonProps = {
-  action: (e: MouseEvent<HTMLButtonElement>) => void;
-  children: ReactNode;
+export type IconButtonProps = ButtonProps & {
   title?: string;
 };
 
