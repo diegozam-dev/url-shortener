@@ -6,10 +6,10 @@ import {
   ShortUrl
 } from '../../components/index';
 import copyTextToClipboard from '../../utils/copyTextToClipboard';
-import { UrlHistoryContext } from '../../contexts/contexts';
+import { HistoryContext } from '../../contexts/contexts';
 
 const ShortenedUrlHistory = () => {
-  const historyContext = useContext(UrlHistoryContext);
+  const historyContext = useContext(HistoryContext);
 
   return (
     <>

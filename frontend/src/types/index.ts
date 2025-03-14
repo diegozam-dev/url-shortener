@@ -5,7 +5,7 @@ import {
   IconButtonProps,
   UrlProps
 } from './component';
-import { UrlHistoryContextType } from './context';
+import { UrlHistoryContext } from './context';
 import { ErrorCode } from './error';
 import {
   UrlShortenerState,
@@ -16,7 +16,7 @@ import { UrlRecord } from './url';
 
 export { UrlShortenerReducerActionTypes, ButtonState, ErrorCode };
 export type {
-  UrlHistoryContextType,
+  UrlHistoryContext,
   UrlProps,
   UrlShortenerReducerAction,
   UrlShortenerResponse,

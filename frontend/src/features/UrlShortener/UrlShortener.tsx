@@ -20,7 +20,7 @@ import {
   UrlRecord,
   ErrorCode
 } from '../../types/index';
-import { UrlHistoryContext } from '../../contexts/contexts';
+import { HistoryContext } from '../../contexts/contexts';
 import CustomError from '../../models/CustomError';
 import { createShortUrl } from '../../services/urlShortenerService';
 import { handleErrors } from '../../services/handleErrors';
@@ -59,7 +59,7 @@ const reducer = (
 
 const UrlShortener = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const historyContext = useContext(UrlHistoryContext);
+  const historyContext = useContext(HistoryContext);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;

@@ -4,7 +4,7 @@ import UrlShortener from '../../features/UrlShortener/UrlShortener';
 import waves from '../../assets/waves.png';
 import ShortenedUrlHistory from '../../features/shortenedUrlHistory/ShortenedUrlHistory';
 import Footer from './Footer';
-import { UrlHistoryContext } from '../../contexts/contexts';
+import { HistoryContext } from '../../contexts/contexts';
 import { UrlRecord } from '../../types/index';
 import { getUrlHistory } from '../../utils/index';
 import { Toaster } from 'sonner';
@@ -17,7 +17,7 @@ const HomeLayout = () => {
   }, []);
 
   return (
-    <UrlHistoryContext.Provider value={{ urlHistory, setUrlHistory }}>
+    <HistoryContext.Provider value={{ urlHistory, setUrlHistory }}>
       <Toaster position="top-center" richColors closeButton />
 
       <div>
@@ -64,7 +64,7 @@ const HomeLayout = () => {
         </main>
         <Footer />
       </div>
-    </UrlHistoryContext.Provider>
+    </HistoryContext.Provider>
   );
 };
 

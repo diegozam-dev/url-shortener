@@ -1,6 +1,4 @@
 import { createContext } from 'react';
-import { UrlHistoryContextType } from '../types/index';
+import { UrlHistoryContext } from '../types/index';
 
-export const UrlHistoryContext = createContext<UrlHistoryContextType | null>(
-  null
-);
+export const HistoryContext = createContext<UrlHistoryContext | null>(null);
