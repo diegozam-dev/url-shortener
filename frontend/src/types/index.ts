@@ -9,12 +9,12 @@ import { UrlHistoryContext } from './context';
 import { ErrorCode } from './error';
 import {
   UrlShortenerState,
-  UrlShortenerReducerActionTypes,
+  UrlShortenerReducerActionList,
   UrlShortenerReducerAction
 } from './features';
 import { UrlRecord } from './url';
 
-export { UrlShortenerReducerActionTypes, ButtonState, ErrorCode };
+export { UrlShortenerReducerActionList, ButtonState, ErrorCode };
 export type {
   UrlHistoryContext,
   UrlProps,

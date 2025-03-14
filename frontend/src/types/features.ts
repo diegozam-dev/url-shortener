@@ -6,7 +6,7 @@ export type UrlShortenerState = {
   isShortening: boolean;
 };
 
-export enum UrlShortenerReducerActionTypes {
+export enum UrlShortenerReducerActionList {
   SetUrlImput = 'SET_URL_INPUT',
   SetIsUrlValid = 'SET_IS_URL_VALID',
   SetCurrentShortUrl = 'SET_CURRENT_SHORT_URL',
@@ -15,6 +15,6 @@ export enum UrlShortenerReducerActionTypes {
 }
 
 export type UrlShortenerReducerAction = {
-  type: UrlShortenerReducerActionTypes;
+  type: UrlShortenerReducerActionList;
   payload: string | boolean | null;
 };

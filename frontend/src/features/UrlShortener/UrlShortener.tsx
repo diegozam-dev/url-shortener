@@ -14,7 +14,7 @@ import {
 import {
   UrlShortenerState,
   UrlShortenerReducerAction,
-  UrlShortenerReducerActionTypes,
+  UrlShortenerReducerActionList,
   UrlShortenerResponse,
   ButtonState,
   UrlRecord,
@@ -66,14 +66,14 @@ const UrlShortener = () => {
 
     try {
       dispatch({
-        type: UrlShortenerReducerActionTypes.SetUrlImput,
+        type: UrlShortenerReducerActionList.SetUrlImput,
         payload: inputValue
       });
 
       const validationResult = urlRegex.test(inputValue);
       if (state.isUrlValid !== validationResult)
         dispatch({
-          type: UrlShortenerReducerActionTypes.SetIsUrlValid,
+          type: UrlShortenerReducerActionList.SetIsUrlValid,
           payload: validationResult
         });
     } catch (error) {
@@ -92,7 +92,7 @@ const UrlShortener = () => {
     try {
       // Cambiamos el estado del botón a cargando
       dispatch({
-        type: UrlShortenerReducerActionTypes.SetIsShortening,
+        type: UrlShortenerReducerActionList.SetIsShortening,
         payload: true
       });
 
@@ -103,7 +103,7 @@ const UrlShortener = () => {
 
       // Actualizamos la actual url corta y actualizamos el historial
       dispatch({
-        type: UrlShortenerReducerActionTypes.SetCurrentShortUrl,
+        type: UrlShortenerReducerActionList.SetCurrentShortUrl,
         payload: response.data?.shortUrl || null
       });
       addToUrlHistory(response.data as UrlRecord);
@@ -111,7 +111,7 @@ const UrlShortener = () => {
 
       // Reiniciamos el estado
       dispatch({
-        type: UrlShortenerReducerActionTypes.Reset,
+        type: UrlShortenerReducerActionList.Reset,
         payload: null
       });
 
@@ -130,7 +130,7 @@ const UrlShortener = () => {
 
       // Reiniciamos el estado
       dispatch({
-        type: UrlShortenerReducerActionTypes.SetIsShortening,
+        type: UrlShortenerReducerActionList.SetIsShortening,
         payload: false
       });
     }
