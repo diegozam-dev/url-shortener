@@ -19,7 +19,7 @@ export const handleErrors = (err: CustomError) => {
       'It is not possible to connect to the server. Please try again later.';
   } else if (err.code === ErrorCode.ErrorNetwork) {
     errorMessage =
-      'Error de conexión. Verifica tu conexión a internet e inténtalo de nuevo.';
+      'Connection error. Check your internet connection and try again.';
   } else {
     errorMessage = 'Something happened! The operation could not be completed.';
   }
