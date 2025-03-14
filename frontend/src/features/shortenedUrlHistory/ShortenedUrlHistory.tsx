@@ -12,7 +12,7 @@ const ShortenedUrlHistory = () => {
   const historyContext = useContext(HistoryContext);
 
   return (
-    <>
+    <div>
       <h2 className="text-(--heading-contrast) text-center mb-6">History</h2>
       <div className="p-6 min-h-36 max-h-[400px] bg-(--surface-primary) rounded-lg shadow-(--shadow-md) overflow-y-auto scrollbar">
         {historyContext && historyContext?.urlHistory.length > 0 ? (
@@ -61,7 +61,7 @@ const ShortenedUrlHistory = () => {
           </span>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
