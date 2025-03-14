@@ -1,5 +1,10 @@
 import { UrlShortenerResponse } from './api';
-import { ButtonState, PrimaryButtonProps, UrlProps } from './component';
+import {
+  ButtonState,
+  PrimaryButtonProps,
+  IconButtonProps,
+  UrlProps
+} from './component';
 import { UrlHistoryContextType } from './context';
 import { ErrorCode } from './error';
 import {
@@ -7,7 +12,7 @@ import {
   UrlShortenerReducerActionTypes,
   UrlShortenerReducerAction
 } from './features';
-import { ShortenedUrlType } from './url';
+import { UrlRecord } from './url';
 
 export { UrlShortenerReducerActionTypes, ButtonState, ErrorCode };
 export type {
@@ -17,5 +22,6 @@ export type {
   UrlShortenerResponse,
   UrlShortenerState,
   PrimaryButtonProps,
-  ShortenedUrlType
+  IconButtonProps,
+  UrlRecord
 };

@@ -1,16 +1,16 @@
 import shortlyLogo from '../../assets/shortly-logo.svg';
+import { useEffect, useState } from 'react';
 import UrlShortener from '../../features/UrlShortener/UrlShortener';
 import waves from '../../assets/waves.png';
 import ShortenedUrlHistory from '../../features/shortenedUrlHistory/ShortenedUrlHistory';
 import Footer from './Footer';
 import { UrlHistoryContext } from '../../contexts/contexts';
-import { useEffect, useState } from 'react';
-import { ShortenedUrlType } from '../../types/index';
+import { UrlRecord } from '../../types/index';
 import { getUrlHistory } from '../../utils/index';
 import { Toaster } from 'sonner';
 
 const HomeLayout = () => {
-  const [urlHistory, setUrlHistory] = useState<ShortenedUrlType[]>([]);
+  const [urlHistory, setUrlHistory] = useState<UrlRecord[]>([]);
 
   useEffect(() => {
     setUrlHistory(getUrlHistory());

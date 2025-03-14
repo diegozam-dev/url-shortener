@@ -1,4 +1,4 @@
-import { IconButtonProps } from '../../../types/component';
+import { IconButtonProps } from '../../../types/index';
 
 const IconButton = ({ action, children, title }: IconButtonProps) => {
   return (

@@ -17,7 +17,7 @@ import {
   UrlShortenerReducerActionTypes,
   UrlShortenerResponse,
   ButtonState,
-  ShortenedUrlType,
+  UrlRecord,
   ErrorCode
 } from '../../types/index';
 import { UrlHistoryContext } from '../../contexts/contexts';
@@ -106,7 +106,7 @@ const UrlShortener = () => {
         type: UrlShortenerReducerActionTypes.SetCurrentShortUrl,
         payload: response.data?.shortUrl || null
       });
-      addToUrlHistory(response.data as ShortenedUrlType);
+      addToUrlHistory(response.data as UrlRecord);
       historyContext?.setUrlHistory(getUrlHistory());
 
       // Reiniciamos el estado

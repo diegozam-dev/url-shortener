@@ -65,6 +65,4 @@ const ShortenedUrlHistory = () => {
   );
 };
 
-// Editar barras de scroll y rounded del contenedor del history
-
 export default ShortenedUrlHistory;

@@ -1,4 +1,4 @@
-export type ShortenedUrlType = {
+export type UrlRecord = {
   shortUrl: string;
   originalUrl: string;
 };
