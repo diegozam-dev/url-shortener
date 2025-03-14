@@ -117,16 +117,15 @@ const UrlShortener = () => {
 
       toast.success('Url shortened successfully.');
     } catch (error) {
+      let errorCode: ErrorCode = ErrorCode.UnknownError;
+
       if (axios.isAxiosError(error)) {
-        if (error.response?.data.response) {
-          const errorCode = error.response?.data?.response as ErrorCode;
-          handleErrors(new CustomError(errorCode));
-        } else {
-          handleErrors(new CustomError(error.code as ErrorCode));
-        }
-      } else {
-        handleErrors(new CustomError(ErrorCode.UnknownError));
+        errorCode =
+          (error.response?.data?.response as ErrorCode) ||
+          (error.code as ErrorCode);
       }
+
+      handleErrors(new CustomError(errorCode));
 
       // Reiniciamos el estado
       dispatch({
@@ -137,7 +136,7 @@ const UrlShortener = () => {
   };
 
   return (
-    <>
+    <div>
       <h1 className="text-(--heading-primary) text-center mb-6">Shorten Url</h1>
       <div>
         <form className="w-full flex flex-col gap-3 sm:flex-row">
@@ -147,7 +146,7 @@ const UrlShortener = () => {
               type="email"
               value={state.urlInput}
               placeholder="Enter url"
-              className={`text-lg text-(--input-text) mb-1 px-4 h-12 w-full bg-(--surface-primary) rounded-lg placeholder:text-(--input-placeholder) outline-0 ${
+              className={`text-lg text-(--input-text) whitespace-nowrap overflow-hidden text-ellipsis mb-1 px-4 h-12 w-full bg-(--surface-primary) rounded-lg placeholder:text-(--input-placeholder) outline-0 ${
                 state.urlInput.length > 0 && !state.isUrlValid
                   ? 'border border-(--input-border-invalid) focus:border-(--input-border-invalid) focus:shadow-(--input-shadow-invalid)'
                   : 'border border-(--input-border) focus:border-(--input-border-focus) focus:shadow-(--input-shadow-focus)'
@@ -202,7 +201,7 @@ const UrlShortener = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
